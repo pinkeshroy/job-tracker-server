@@ -1,0 +1,81 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int               @id @default(autoincrement())
+  email         String            @unique
+  password      String
+  name          String
+  role          Role              @default(USER)
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+
+  // Relationships
+  jobs          Job[]             @relation("PostedJobs")
+  applications  JobApplication[]  @relation("UserApplications")
+}
+
+model Job {
+  id            Int               @id @default(autoincrement())
+  title         String
+  company       String
+  description   String
+  location      String?
+  salaryRange   String?
+  status        JobStatus         @default(OPEN)
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+
+  // Foreign Key
+  recruiterId   Int
+  recruiter     User              @relation("PostedJobs", fields: [recruiterId], references: [id])
+
+  // Relationships
+  applications  JobApplication[]  @relation("JobApplications")
+}
+
+model JobApplication {
+  id           Int               @id @default(autoincrement())
+  coverLetter  String?
+  resumeUrl    String?
+  status       ApplicationStatus @default(APPLIED)
+  appliedAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+
+  // Foreign Keys
+  userId       Int
+  jobId        Int
+
+  // Relations
+  user         User              @relation("UserApplications", fields: [userId], references: [id])
+  job          Job               @relation("JobApplications", fields: [jobId], references: [id])
+}
+
+// ENUMS
+
+enum Role {
+  ADMIN
+  RECRUITER
+  USER
+}
+
+enum JobStatus {
+  OPEN
+  CLOSED
+  PAUSED
+}
+
+enum ApplicationStatus {
+  APPLIED
+  INTERVIEW
+  REJECTED
+  OFFERED
+  ON_HOLD
+}
