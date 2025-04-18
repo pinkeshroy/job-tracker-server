@@ -26,7 +26,7 @@ export const updateJob = async (req, res, next) => {
 
     const updatedJob = await prisma.job.update({
       where: { id: jobId },
-      data: req.body, // 👈 safe now because it's validated
+      data: req.body,
       select: {
         id: true,
         title: true,
