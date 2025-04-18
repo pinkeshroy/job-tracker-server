@@ -12,8 +12,11 @@ COPY . .
 # Generate Prisma client
 RUN npx prisma generate
 
-# Expose the port
+# Push Prisma schema to the database
+RUN npx prisma db push
+
+# Expose your application port
 EXPOSE 5000
 
-# Start the application
+# Start your app
 CMD ["npm", "run", "dev"]
