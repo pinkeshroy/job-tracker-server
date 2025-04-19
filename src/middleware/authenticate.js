@@ -3,7 +3,6 @@ import prisma from '../config/db.js'; // Ensure correct extension if using ESMod
 
 export const authenticate = async (req, res, next) => {
   const authHeader = req.headers.authorization;
-  console.log('[auth] Incoming token:', authHeader);
 
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return res.status(401).json({ success: false, message: 'No token provided' });

@@ -1,5 +1,5 @@
 import prisma from '../../config/db.js';
-import { validateJobApplicationsQuery } from '../../utils/validator/jobApplicationValidator.js';
+import { validateJobIdQuery } from '../../utils/validator/jobApplicationValidator.js';
 
 export const getApplicationsByJobId = async (req, res, next) => {
   try {
@@ -8,7 +8,7 @@ export const getApplicationsByJobId = async (req, res, next) => {
       return res.status(400).json({ success: false, error: 'Invalid job ID' });
     }
 
-    const { error } = validateJobApplicationsQuery(req.query);
+    const { error } = validateJobIdQuery(req.query);
     if (error) {
       return res.status(422).json({ success: false, error: error.details[0].message });
     }

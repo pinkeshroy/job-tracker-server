@@ -40,7 +40,15 @@ export const validateGetApplications = Joi.object({
 });
 
 export const validateUserUpdateApplication = Joi.object({
-    coverLetter: Joi.string().max(2000).optional(),
-    resumeUrl: Joi.string().uri().optional(),
-    status: Joi.forbidden()
-  })
+  coverLetter: Joi.string().max(2000).optional(),
+  resumeUrl: Joi.string().uri().optional(),
+  status: Joi.forbidden(),
+});
+
+export const validateRecruiterUpdateApplication = Joi.object({
+  status: Joi.string()
+    .valid("APPLIED", "INTERVIEW", "OFFER", "REJECTED")
+    .required(),
+  coverLetter: Joi.forbidden(),
+  resumeUrl: Joi.forbidden(),
+});
