@@ -24,3 +24,19 @@ export const validateJobUpdate = (data) => {
 
   return schema.validate(data);
 };
+
+export const validateJobQuery = (query) => {
+  const schema = Joi.object({
+    page: Joi.number().integer().min(1).default(1),
+    limit: Joi.number().integer().min(1).max(100).default(10),
+    sortBy: Joi.string()
+      .valid('createdAt', 'title', 'status')
+      .default('createdAt'),
+    order: Joi.string().valid('asc', 'desc').insensitive().default('desc'),
+    status: Joi.string().valid('OPEN', 'CLOSED', 'ON_HOLD').optional(),
+    recruiterId: Joi.number().integer().optional(),
+    title: Joi.string().optional(),
+  });
+
+  return schema.validate(query);
+};

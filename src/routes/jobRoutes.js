@@ -1,6 +1,7 @@
 import express from 'express'
 import { createJob } from '../controllers/job/createJob.js'
 import { deleteJob } from '../controllers/job/deleteJob.js'
+import { getAllJobs } from '../controllers/job/getAllJobs.js'
 import { updateJob } from '../controllers/job/updateJob.js'
 import { applyToJob } from '../controllers/jobApplication/applyToJob.js'
 import { deleteApplication } from '../controllers/jobApplication/deleteApplication.js'
@@ -10,10 +11,11 @@ import { updateApplication } from '../controllers/jobApplication/updateApplicati
 
 const router = express.Router();
 
-router.post('/job', createJob);
-router.put('/job', updateJob);
-router.delete('/job', deleteJob);
-router.post('/jobs/:jobId/apply', applyToJob);
+router.get('/', getAllJobs);
+router.post('/', createJob);
+router.put('/', updateJob);
+router.delete('/', deleteJob);
+router.post('/:jobId/apply', applyToJob);
 router.get('/applications', getApplications);
 router.put('/applications/:applicationId', updateApplication);
 router.delete('/applications/:applicationId', deleteApplication);

@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 import prisma from '../../config/db.js'
 import { validateRegister } from '../../utils/validator/authValidator.js'
 
-const JWT_SECRET = process.env.JWT_SECRET || 'supersecretkey'
+const JWT_SECRET = process.env.JWT_SECRET;
 
 // Only allowed roles at registration
 const ALLOWED_ROLES = ['USER', 'RECRUITER']
@@ -41,7 +41,7 @@ export const register = async (req, res, next) => {
       select: { id: true, email: true, name: true, role: true }
     })
 
-    const token = jwt.sign({ id: user.id, role: user.role }, JWT_SECRET, { expiresIn: '2h' })
+    const token = jwt.sign({ id: user.id, role: user.role, name: user.name }, JWT_SECRET, { expiresIn: '2h' })
 
     return res.status(201).json({
       success: true,
