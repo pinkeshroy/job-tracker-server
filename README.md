@@ -99,14 +99,7 @@ docker-compose up --build
 ### ✅ Register Endpoint (Live)
 
 ```
-curl --location 'https://job-tracker-server-jpfy.onrender.com/api/auth/register' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "email":"",
-    "password":"",
-    "name":"",
-    "role": ""
-}'
+curl --location 'https://job-tracker-server-jpfy.onrender.com/'
 ```
 * role can be "USER" or "RECRUITER"
   
