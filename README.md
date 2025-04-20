@@ -94,6 +94,48 @@ docker-compose up --build
 
 ---
 
+## 🔐 Authentication
+
+### ✅ Register Endpoint (Live)
+
+```
+curl --location 'https://job-tracker-server-jpfy.onrender.com/api/auth/register' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email":"",
+    "password":"",
+    "name":"",
+    "role": ""
+}'
+```
+* role can be "USER" or "RECRUITER"
+  
+--
+
+## 📚 API Endpoints Overview
+
+### 🔐 Auth Routes (`/api/auth`)
+| Route                  | Method | Description           |
+|------------------------|--------|-----------------------|
+| `/api/auth/register`   | POST   | Register new user     |
+| `/api/auth/login`      | POST   | User login            |
+
+### 💼 Job Routes (`/api/job`) _(Protected)_
+| Route                                         | Method | Description                            |
+|----------------------------------------------|--------|----------------------------------------|
+| `/api/job/`                                   | GET    | Get all job listings                   |
+| `/api/job/`                                   | POST   | Create a new job (Recruiter only)      |
+| `/api/job/`                                   | PUT    | Update a job                           |
+| `/api/job/`                                   | DELETE | Delete a job                           |
+| `/api/job/:jobId/apply`                       | POST   | Apply to a job                         |
+| `/api/job/applications`                       | GET    | Get all applications (User/Recruiter)  |
+| `/api/job/applications/:applicationId`        | PUT    | Update an application                  |
+| `/api/job/applications/:applicationId`        | DELETE | Delete an application                  |
+| `/api/job/applications/stats`                 | GET    | Get aggregated application stats       |
+| `/api/job/:jobId/applications`                | GET    | Get all applications for a job         |
+
+--
+
 ## 👥 License & Author
 
 **📄 License:**  
