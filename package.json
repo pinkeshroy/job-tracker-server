@@ -15,9 +15,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/pinkeshroy/job-tracker-server/issues"
-  },
   "homepage": "https://github.com/pinkeshroy/job-tracker-server#readme",
   "description": "",
   "dependencies": {
