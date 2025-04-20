@@ -45,7 +45,7 @@ job-tracker-server/
 ├── package.json           # Metadata & scripts
 └── README.md              # You're here!
 ```
---
+---
 
 ## 🌱 Environment Variables (.env)
 - Create a .env file at the root of your project:
@@ -58,7 +58,7 @@ DB_NAME=job_tracker
 DATABASE_URL=mysql://root:root@mysql:3306/job_tracker
 JWT_SECRET=jdshvhjdbvhjfvfv
 ```
---
+---
 
 ## 🚀 Local Development
 
@@ -110,7 +110,7 @@ curl --location 'https://job-tracker-server-jpfy.onrender.com/api/auth/register'
 ```
 * role can be "USER" or "RECRUITER"
   
---
+---
 
 ## 📚 API Endpoints Overview
 
@@ -134,7 +134,7 @@ curl --location 'https://job-tracker-server-jpfy.onrender.com/api/auth/register'
 | `/api/job/applications/stats`                 | GET    | Get aggregated application stats       |
 | `/api/job/:jobId/applications`                | GET    | Get all applications for a job         |
 
---
+---
 
 ## 👥 License & Author
 
