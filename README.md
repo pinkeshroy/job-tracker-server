@@ -96,7 +96,7 @@ docker-compose up --build
 
 ## 🔐 Authentication
 
-### ✅ Register Endpoint (Live)
+### ✅ Endpoint (Live)
 
 ```
 curl --location 'https://job-tracker-server-jpfy.onrender.com/'
